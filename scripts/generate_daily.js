@@ -47,19 +47,38 @@ async function translateToChinese(text) {
   });
 }
 
-// 生成简短摘要（取前两句）
-function generateShortSummary(text, maxLen = 150) {
+// 生成简短摘要（完整句子，不截断）
+function generateShortSummary(text, maxLen = 200) {
   if (!text) return '';
   
-  // 按句子分割
-  const sentences = text.split(/[.!?。！？]/).filter(s => s.trim().length > 10);
-  let summary = sentences.slice(0, 2).join('。');
+  // 清理文本
+  let summary = text.replace(/\s+/g, ' ').trim();
   
-  if (summary.length > maxLen) {
-    summary = summary.substring(0, maxLen);
+  // 如果已经很短，直接返回
+  if (summary.length <= maxLen) return summary;
+  
+  // 找到合适的截断点（句子结束）
+  const truncated = summary.substring(0, maxLen);
+  const lastPeriod = Math.max(
+    truncated.lastIndexOf('.'),
+    truncated.lastIndexOf('。'),
+    truncated.lastIndexOf('!'),
+    truncated.lastIndexOf('！'),
+    truncated.lastIndexOf('?'),
+    truncated.lastIndexOf('？')
+  );
+  
+  if (lastPeriod > maxLen * 0.5) {
+    return truncated.substring(0, lastPeriod + 1);
   }
   
-  return summary.trim() + (summary.endsWith('。') ? '' : '...');
+  // 如果没有合适的句子结束符，在单词边界截断
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace > maxLen * 0.5) {
+    return truncated.substring(0, lastSpace) + '...';
+  }
+  
+  return truncated + '...';
 }
 
 // 抓取 arXiv 论文
@@ -136,9 +155,15 @@ function escapeHtml(str) {
 }
 
 // 生成 HTML 页面
-async function generateHTML(data) {
+async function generateHTML(data, historyDates = []) {
   const { date, aiNews, papers, blogs } = data;
   const dateStr = formatDate(date);
+  
+  // 获取历史日期列表（用于侧边栏）
+  const historyForSidebar = historyDates.map(h => ({
+    filename: h.filename,
+    dateShort: h.date
+  }));
   
   // 翻译新闻摘要
   console.log('翻译 AI 资讯摘要...');
@@ -291,6 +316,55 @@ async function generateHTML(data) {
     }
     nav a:hover { color: #764ba2; }
     
+    /* 侧边栏日期导航 */
+    .sidebar {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-height: 60vh;
+      overflow-y: auto;
+      z-index: 100;
+      min-width: 140px;
+    }
+    .sidebar h4 {
+      color: #667eea;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+    }
+    .sidebar a {
+      display: block;
+      color: #666;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      margin: 3px 0;
+      transition: all 0.2s;
+    }
+    .sidebar a:hover {
+      background: #f0f3ff;
+      color: #667eea;
+    }
+    .sidebar a.active {
+      background: #667eea;
+      color: white;
+    }
+    .sidebar a.today {
+      color: #667eea;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 1200px) {
+      .sidebar { display: none; }
+    }
+    
     footer {
       text-align: center;
       color: #888;
@@ -368,6 +442,16 @@ async function generateHTML(data) {
       <p style="margin-top:8px;color:#aaa;">更新时间: ${new Date().toLocaleString('zh-CN')}</p>
     </footer>
   </div>
+  
+  <!-- 侧边栏日期导航 -->
+  ${historyForSidebar.length > 0 ? `
+  <div class="sidebar">
+    <h4>📅 历史日报</h4>
+    ${historyForSidebar.slice(0, 10).map(d => `
+      <a href="${d.filename}" class="${d.filename === `${date}.html` ? 'active' : ''}">${d.dateShort}</a>
+    `).join('')}
+  </div>
+  ` : ''}
 </body>
 </html>`;
 }
@@ -498,12 +582,8 @@ async function main() {
   
   // 生成 HTML
   console.log('\n生成 HTML 页面（含翻译）...');
-  const html = await generateHTML(data);
-  const htmlFile = path.join(SITE_DIR, `${date}.html`);
-  fs.writeFileSync(htmlFile, html);
-  console.log(`✓ HTML 已生成: ${htmlFile}`);
   
-  // 更新首页
+  // 准备历史日期列表
   const historyFiles = fs.readdirSync(DATA_DIR)
     .filter(f => f.endsWith('.json'))
     .map(f => {
@@ -518,6 +598,12 @@ async function main() {
     })
     .sort((a, b) => b.filename.localeCompare(a.filename));
   
+  const html = await generateHTML(data, historyFiles);
+  const htmlFile = path.join(SITE_DIR, `${date}.html`);
+  fs.writeFileSync(htmlFile, html);
+  console.log(`✓ HTML 已生成: ${htmlFile}`);
+  
+  // 更新首页
   const indexHtml = generateIndex(historyFiles);
   fs.writeFileSync(path.join(SITE_DIR, 'index.html'), indexHtml);
   console.log('✓ 首页已更新');

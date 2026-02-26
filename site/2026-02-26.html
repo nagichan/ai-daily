@@ -125,6 +125,55 @@
     }
     nav a:hover { color: #764ba2; }
     
+    /* 侧边栏日期导航 */
+    .sidebar {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-height: 60vh;
+      overflow-y: auto;
+      z-index: 100;
+      min-width: 140px;
+    }
+    .sidebar h4 {
+      color: #667eea;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+    }
+    .sidebar a {
+      display: block;
+      color: #666;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      margin: 3px 0;
+      transition: all 0.2s;
+    }
+    .sidebar a:hover {
+      background: #f0f3ff;
+      color: #667eea;
+    }
+    .sidebar a.active {
+      background: #667eea;
+      color: white;
+    }
+    .sidebar a.today {
+      color: #667eea;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 1200px) {
+      .sidebar { display: none; }
+    }
+    
     footer {
       text-align: center;
       color: #888;
@@ -162,91 +211,91 @@
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/salesforce-ceo-marc-benioff-this-isnt-our-first-saaspocalypse/" target="_blank">Salesforce首席执行官Marc Benioff ：这不是我们的第一个SaaSpocalypse</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">Salesforce报告了稳健的年终盈利，然后竭尽全力避免更多关于其业务死亡的言论被人工智能所取代……</div>
+          <div class="summary">Salesforce报告了稳健的年终盈利，然后全力以赴，以避免更多人谈论其业务的死亡。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/gushwork-bets-on-ai-search-for-customer-leads-and-early-results-are-emerging/" target="_blank">Gushwork押注人工智能搜索客户线索—早期结果正在出现</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">Gushwork在由SIG和Lightspeed牵头的种子轮融资中筹集了900万美元$。这家初创公司已经从ChatG等人工智能搜索工具中获得了早期客户的牵引力...</div>
+          <div class="summary">Gushwork在SIG和Lightspeed领投的种子轮融资中筹集了900万美元$。这家初创公司已经从ChatGPT等人工智能搜索工具中看到了早期的客户吸引力。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/anthropic-acquires-vercept-ai-startup-agents-computer-use-founders-investors/" target="_blank">在Meta挖走其创始人之一后， Anthropic收购了计算机使用的人工智能初创公司Vercept</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">总部位于西雅图的Vercept开发了复杂的代理工具，包括一个计算机使用代理，可以在应用程序中完成任务，就像一个...</div>
+          <div class="summary">总部位于西雅图的Vercept开发了复杂的代理工具，包括一个计算机使用代理，可以像使用笔记本电脑的人一样完成应用程序中的任务。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/nvidia-earnings-record-capex-spend-ai/" target="_blank">在创纪录的资本支出下，英伟达又创下了另一个创纪录的季度</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">“全球对代币的需求已经完全呈指数级增长，”英伟达首席执行官Jensen Huang在谈到该公司的盈利时表示。</div>
+          <div class="summary">“全球对代币的需求已经完全呈指数级增长，”英伟达首席执行官Jensen Huang谈到该公司的盈利时说。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://www.technologyreview.com/2026/02/25/1132873/roundtables-why-2026-is-the-year-for-sodium-ion-batteries/" target="_blank">圆桌会议：为什么2026年是钠离子电池年</a></h3>
           <div class="meta">📌 MIT Tech Review</div>
-          <div class="summary">收听下面的节目或观看钠基电池可能是锂离子更便宜、更安全的替代品，该技术终于可以...</div>
+          <div class="summary">收听或观看下面的钠基电池可能是锂离子电池更便宜、更安全的替代品，该技术最终将进入汽车和储能阵列。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/the-white-house-wants-ai-companies-to-cover-rate-hikes-most-have-already-said-they-would/" target="_blank">白宫希望人工智能公司能够覆盖加息。大多数人已经说过他们会这么做。</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">许多超大规模企业已经公开承诺弥补电力成本的增加……</div>
+          <div class="summary">许多超大规模企业已经公开承诺弥补电力成本的增加。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/us-cybersecurity-agency-cisa-reportedly-in-dire-shape-amid-trump-cuts-and-layoffs/" target="_blank">据报道，在特朗普裁员和裁员期间，美国网络安全机构CISA处于可怕状态</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">在特朗普政府执政的第一年，美国。网络机构CISA面临着裁员、裁员和休假，两党立法者和网络安全...</div>
+          <div class="summary">在特朗普政府执政的第一年，美国网络机构CISA面临裁员、裁员和休假，因为两党立法者和网络安全行业消息人士表示，该机构没有做好准备</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/video/welcome-to-the-post-hype-crypto-market/" target="_blank">欢迎来到后炒作加密市场</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">Crypto正在悄悄回到初创公司的谈话中，但在上周的ETHDenver上，人们对华盛顿的关注与对代币。政策的关注一样多...</div>
+          <div class="summary">Crypto正在悄悄回到初创公司的谈话中，但在上周的ETHDenver上，人们对华盛顿的关注与对代币的关注一样多。作为Tether ，政策变化正在市场上蔓延</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/alphabet-owned-robotics-software-company-intrinsic-joins-google/" target="_blank">Alphabet旗下的机器人软件公司Intrinsic加入谷歌</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">在毕业于一家独立的Alphabet公司近五年后， Intrinsic正在进入谷歌的领域......</div>
+          <div class="summary">在毕业于一家独立的Alphabet公司近五年后， Intrinsic正在进入谷歌的领域。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/snapchat-announces-the-snappys-its-first-ever-creator-awards-show/" target="_blank">Snapchat宣布推出其首个创作者奖项节目“The Snappys”</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">Snapchat是面向创作者推出奖项的最新社交媒体平台，加入了TikTok和Instagram...</div>
+          <div class="summary">Snapchat是最新的社交媒体平台，加入了TikTok和Instagram ，为创作者推出奖项。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/an-accountant-won-a-big-jackpot-on-kalshi-by-betting-against-doge/" target="_blank">一位会计打赌总督，在Kalshi上赢了一个大奖</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">一位税务会计看到埃隆·马斯克（ Elon Musk ）的粉丝竞标Kalshi预测市场，并看到了一个轻松赚钱的赌注......</div>
+          <div class="summary">一位税务会计看到埃隆·马斯克（ Elon Musk ）的粉丝竞标Kalshi预测市场，并看到了一个轻松赚钱的赌注。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/inside-the-story-of-the-us-defense-contractor-who-leaked-hacking-tools-to-russia/" target="_blank">美国国防承包商向俄罗斯泄露黑客工具的故事</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">这位U型。黑客工具制造商的前老板因向俄罗斯经纪人出售高度敏感的软件漏洞而被判入狱...</div>
+          <div class="summary">这位美国黑客工具制造商的前老板因向俄罗斯经纪人出售高度敏感的软件漏洞而被判入狱。这就是我们第一次得知他被捕，报道这个故事，以及一些</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/samsung-shows-off-new-display-tech-that-adds-a-privacy-screen-to-apps-and-notifications/" target="_blank">三星展示新的显示技术，为应用程序和通知添加隐私屏幕</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">新的隐私技术使用不同类型的像素，让您可以阻止某些应用程序和通知被其他人查看...</div>
+          <div class="summary">新的隐私技术使用不同类型的像素，让您可以阻止某些应用程序和通知被其他人查看。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/wearable-startup-cudis-launches-a-new-health-ring-line-with-an-ai-fueled-coach/" target="_blank">可穿戴初创公司CUDIS推出新的健康戒指系列，配备人工智能驱动的“教练”</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">可穿戴设备通过积分激励健康行为，这些积分可以兑换成健康产品...</div>
+          <div class="summary">可穿戴设备通过积分激励健康行为，积分可用于兑换健康产品。</div>
         </div>
       
         <div class="item">
           <h3><a href="https://techcrunch.com/2026/02/25/kalshi-fined-a-mrbeast-editor-for-insider-trading-on-markets-related-to-the-youtube-star/" target="_blank">Kalshi因在与YouTube明星相关的市场上进行内幕交易而对MrBeast编辑处以罚款</a></h3>
           <div class="meta">📌 TechCrunch AI</div>
-          <div class="summary">Kalshi对MrBeast编辑Artem Kaptur处以超过$ 20,000的罚款...</div>
+          <div class="summary">Kalshi对MrBeast编辑Artem Kaptur处以超过$ 20,000的罚款。</div>
         </div>
       
     </section>
@@ -261,7 +310,7 @@
             <span class="tag">cs.SD</span>
             👤 Cheng-Yeh Yang, Chien-Chun Wang, Li-Wei Chen
           </div>
-          <div class="summary">低资源自动语音识别（ ASR ）继续构成重大挑战，主要是由于转录数据的可用性有限...</div>
+          <div class="summary">低资源自动语音识别（ ASR ）继续构成重大挑战，主要是由于许多语言的转录数据的可用性有限。</div>
           <a href="http://arxiv.org/pdf/2602.22039v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -271,7 +320,7 @@
             <span class="tag">cs.SD</span>
             👤 Wenjie Tian, Zhixian Zhao, Jingbin Hu
           </div>
-          <div class="summary">全模态大型语言模型（ Omni-LLMs ）的演变彻底改变了人机交互，实现了统一的视听感知……</div>
+          <div class="summary">全模态大型语言模型（ Omni-LLMs ）的演变彻底改变了人机交互，实现了统一的视听感知和语音响应。</div>
           <a href="http://arxiv.org/pdf/2602.21900v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -281,7 +330,7 @@
             <span class="tag">eess.AS</span>
             👤 Chun-wei Ho, Sabato Marco Siniscalchi, Kai Li
           </div>
-          <div class="summary">我们提出了一种基于模型的知识驱动方法，将音频分割为单一类别和混合类别块，并应用于源代码。</div>
+          <div class="summary">我们提出了一种基于模型的知识驱动方法，将音频分割为单一类别和混合类别块，并应用于源分离。</div>
           <a href="http://arxiv.org/pdf/2602.21476v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -291,7 +340,7 @@
             <span class="tag">eess.AS</span>
             👤 Sofoklis Kakouros, Fang Kang, Haoyu Chen
           </div>
-          <div class="summary">这项工作提出了iMiGUE-Speech ，这是iMiGUE数据集的扩展，为研究情感和情感提供了自发的情感语料库……</div>
+          <div class="summary">这项工作提出了iMiGUE-Speech ，这是iMiGUE数据集的扩展，为研究情绪和情绪状态提供了自发的情感语料库。</div>
           <a href="http://arxiv.org/pdf/2602.21464v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -301,7 +350,7 @@
             <span class="tag">cs.SD</span>
             👤 Haoyang Li, Changsong Liu, Wei Rao
           </div>
-          <div class="summary">自动语音识别（ ASR ）在嘈杂的环境中严重退化。尽管语音增强（ SE ）前端有效地抑制了背景...</div>
+          <div class="summary">自动语音识别(ASR)在嘈杂的环境中会严重退化。虽然语音增强（ SE ）前端有效地抑制了背景噪声，但它们通常会引入有害的伪影...</div>
           <a href="http://arxiv.org/pdf/2602.20967v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -311,7 +360,7 @@
             <span class="tag">cs.SD</span>
             👤 Bipasha Kashyap, Pubudu N. Pathirana
           </div>
-          <div class="summary">基于语音的临床工具越来越多地部署在多语言环境中，但病理语音标记是否保持几何可分......</div>
+          <div class="summary">基于语音的临床工具越来越多地部署在多语言环境中，但病理性语音标记是否在几何上与重音变化分开仍不清楚。</div>
           <a href="http://arxiv.org/pdf/2602.20823v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -321,7 +370,7 @@
             <span class="tag">cs.SD</span>
             👤 Fang-Duo Tsai, Yi-An Lai, Fei-Yueh Chen
           </div>
-          <div class="summary">歌曲生成旨在从歌词和文本描述中生成包含人声和伴奏的完整歌曲，但端到端模型仍然是数据和...</div>
+          <div class="summary">歌曲生成旨在从歌词和文本描述中生成包含人声和伴奏的完整歌曲，但端到端模型仍然是数据和计算密集型的，并提供有限的可编辑性。</div>
           <a href="http://arxiv.org/pdf/2602.22029v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -331,7 +380,7 @@
             <span class="tag">cs.SD</span>
             👤 Bipasha Kashyap, Björn W. Schuller, Pubudu N. Pathirana
           </div>
-          <div class="summary">语音信号在共享声道中编码情感、语言和病理信息；然而，解开通常是……</div>
+          <div class="summary">语音信号在共享声道内编码情绪、语言和病理信息；然而，解开通常是通过下游任务间接评估的……</div>
           <a href="http://arxiv.org/pdf/2602.20592v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -341,7 +390,7 @@
             <span class="tag">cs.SD</span>
             👤 Ming Li, Yong-Jin Liu, Fang Liu
           </div>
-          <div class="summary">多模态生理和行为信号的情感识别在情感计算中起着关键作用，但大多数现有模型仍然存在...</div>
+          <div class="summary">来自多模态生理和行为信号的情感识别在情感计算中起着关键作用，但大多数现有模型仍然受限于对奇异信号的预测。</div>
           <a href="http://arxiv.org/pdf/2602.20530v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -351,7 +400,7 @@
             <span class="tag">cs.SD</span>
             👤 Shihong Tan, Haoyu Wang, Youran Ni
           </div>
-          <div class="summary">音乐源恢复（ MSR ）旨在从混合和掌握录音中恢复未处理的茎。挑战。在于分离重叠...</div>
+          <div class="summary">音乐源恢复（ MSR ）旨在从混合和掌握录音中恢复未处理的茎。挑战在于分离重叠的源和重建被…退化的信号。</div>
           <a href="http://arxiv.org/pdf/2602.19825v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -361,7 +410,7 @@
             <span class="tag">cs.SD</span>
             👤 Hanwen Liu, Saierdaer Yusuyin, Hao Huang
           </div>
-          <div class="summary">基于大语言模型（ LLM ）的文本到语音（ TTS ）系统可以生成自然语音，但大多数系统并不是针对低延迟双流系统而设计的...</div>
+          <div class="summary">基于大语言模型（ LLM ）的文本到语音（ TTS ）系统可以生成自然语音，但大多数都不是为低延迟双流合成而设计的。</div>
           <a href="http://arxiv.org/pdf/2602.19574v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -371,7 +420,7 @@
             <span class="tag">cs.SD</span>
             👤 Yuxuan Chen, Peize He, Haoyuan Xu
           </div>
-          <div class="summary">通用音频表示应该在单个编码中捕获精细的语音提示和环境声音和音乐的高级语义...</div>
+          <div class="summary">通用音频表示应该在单个编码器中捕获精细的语音提示和环境声音和音乐的高级语义。</div>
           <a href="http://arxiv.org/pdf/2602.21772v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -381,7 +430,7 @@
             <span class="tag">cs.SD</span>
             👤 MD. Sagor Chowdhury, Adiba Fairooz Chowdhury
           </div>
-          <div class="summary">我们描述了提交给DL Sprint 4。 0比赛的孟加拉语长格式语音识别（ ASR ）和说话者日志的端到端系统……</div>
+          <div class="summary">我们描述了提交给Kaggle上的DL Sprint 4.0竞赛的孟加拉语长格式语音识别（ ASR ）和说话人日记的端到端系统。</div>
           <a href="http://arxiv.org/pdf/2602.21741v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -391,7 +440,7 @@
             <span class="tag">cs.SD</span>
             👤 Ratnajit Dhar, Arpita Mallik
           </div>
-          <div class="summary">孟加拉语尽管是全球使用最广泛的语言之一，但在长语音技术方面仍然代表性不足，尤其是在系统方面……</div>
+          <div class="summary">孟加拉语尽管是全球使用最广泛的语言之一，但在长语音技术方面仍然代表性不足，特别是在处理转录和说话者的系统中……</div>
           <a href="http://arxiv.org/pdf/2602.21183v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -401,7 +450,7 @@
             <span class="tag">cs.SD</span>
             👤 Anh-Tuan Dao, Driss Matrouf, Nicholas Evans
           </div>
-          <div class="summary">欺骗检测系统通常使用来自多个扬声器的不同录音进行训练，通常假设由此产生的嵌入是独立的...</div>
+          <div class="summary">欺骗检测系统通常使用来自多个扬声器的不同录音进行训练，通常假设由此产生的嵌入与扬声器身份无关。</div>
           <a href="http://arxiv.org/pdf/2602.20805v1.pdf" target="_blank" class="pdf-link">📄 下载 PDF</a>
         </div>
       
@@ -432,8 +481,18 @@
     
     <footer>
       <p>🤖 本日报由 AI 自动生成，仅供参考</p>
-      <p style="margin-top:8px;color:#aaa;">更新时间: 2026/2/26 16:43:06</p>
+      <p style="margin-top:8px;color:#aaa;">更新时间: 2026/2/26 17:07:25</p>
     </footer>
   </div>
+  
+  <!-- 侧边栏日期导航 -->
+  
+  <div class="sidebar">
+    <h4>📅 历史日报</h4>
+    
+      <a href="2026-02-26.html" class="active">2026年2月26日星期四</a>
+    
+  </div>
+  
 </body>
 </html>
