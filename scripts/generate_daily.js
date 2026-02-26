@@ -86,9 +86,8 @@ async function fetchArxivPapers() {
   const categories = ['eess.AS', 'cs.SD'];
   const allPapers = [];
   
-  const threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-  const cutoffDate = threeDaysAgo.toISOString().split('T')[0];
+  // 只获取今天的论文
+  const today = new Date().toISOString().split('T')[0];
   
   for (const cat of categories) {
     try {
@@ -120,10 +119,10 @@ async function fetchArxivPapers() {
         }))
         .filter(p => {
           const pubDate = p.published.split('T')[0];
-          return pubDate >= cutoffDate;
+          return pubDate === today;
         });
       
-      console.log(`[arXiv ${cat}] 找到 ${papers.length} 篇近期论文`);
+      console.log(`[arXiv ${cat}] 找到 ${papers.length} 篇今日论文`);
       allPapers.push(...papers);
     } catch (err) {
       console.error(`[arXiv ${cat}] 抓取失败:`, err.message);
@@ -569,7 +568,7 @@ async function main() {
   
   console.log('\n[3/3] 抓取博主动态...');
   try {
-    data.blogs = await fetchBlogPosts(7);
+    data.blogs = await fetchBlogPosts();
     console.log(`✓ 获取 ${data.blogs.length} 篇博文`);
   } catch (err) {
     console.error('✗ 博客抓取失败:', err.message);

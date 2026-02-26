@@ -103,10 +103,10 @@ function parseFeed(feed, blogInfo) {
   return [];
 }
 
-async function fetchBlogPosts(daysBack = 7) {
+async function fetchBlogPosts() {
   const allPosts = [];
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - daysBack);
+  // 只获取今天的文章
+  const today = new Date().toISOString().split('T')[0];
   
   for (const blog of BLOGS) {
     try {
@@ -114,14 +114,14 @@ async function fetchBlogPosts(daysBack = 7) {
       const feed = await fetchRSS(blog.rss);
       const posts = parseFeed(feed, blog);
       
-      // 过滤最近的文章
-      const recentPosts = posts.filter(post => {
-        const pubDate = new Date(post.published);
-        return pubDate >= cutoffDate;
+      // 过滤今天的文章
+      const todayPosts = posts.filter(post => {
+        const pubDate = new Date(post.published).toISOString().split('T')[0];
+        return pubDate === today;
       });
       
-      console.log(`[${blog.name}] 找到 ${recentPosts.length} 篇近期文章`);
-      allPosts.push(...recentPosts);
+      console.log(`[${blog.name}] 找到 ${todayPosts.length} 篇今日文章`);
+      allPosts.push(...todayPosts);
     } catch (err) {
       console.error(`[${blog.name}] 抓取失败:`, err.message);
     }
