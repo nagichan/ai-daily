@@ -177,6 +177,199 @@
       "source": "MIT Tech Review"
     }
   ],
-  "papers": [],
+  "papers": [
+    {
+      "id": "http://arxiv.org/abs/2602.22039v1",
+      "title": "TG-ASR: Translation-Guided Learning with Parallel Gated Cross Attention for Low-Resource Automatic Speech Recognition",
+      "authors": [
+        "Cheng-Yeh Yang",
+        "Chien-Chun Wang",
+        "Li-Wei Chen"
+      ],
+      "summary": "Low-resource automatic speech recognition (ASR) continues to pose significant challenges, primarily due to the limited availability of transcribed data for numerous languages. While a wealth of spoken content is accessible in television dramas and online videos, Taiwanese Hokkien exemplifies this issue, with transcriptions often being scarce and the majority of available subtitles provided only in Mandarin. To address this deficiency, we introduce TG-ASR for Taiwanese Hokkien drama speech recogn",
+      "published": "2026-02-25T15:47:34Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.22039v1",
+      "pdf": "http://arxiv.org/pdf/2602.22039v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21900v1",
+      "title": "EmoOmni: Bridging Emotional Understanding and Expression in Omni-Modal LLMs",
+      "authors": [
+        "Wenjie Tian",
+        "Zhixian Zhao",
+        "Jingbin Hu"
+      ],
+      "summary": "The evolution of Omni-Modal Large Language Models~(Omni-LLMs) has revolutionized human--computer interaction, enabling unified audio-visual perception and speech response. However, existing Omni-LLMs struggle with complex real-world scenarios, often leading to superficial understanding and contextually mismatched emotional responses. This issue is further intensified by Omni-LLM's Thinker-Talker architectures, which are implicitly connected through hidden states, leading to the loss of emotional",
+      "published": "2026-02-25T13:30:27Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.21900v1",
+      "pdf": "http://arxiv.org/pdf/2602.21900v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21476v1",
+      "title": "A Knowledge-Driven Approach to Music Segmentation, Music Source Separation and Cinematic Audio Source Separation",
+      "authors": [
+        "Chun-wei Ho",
+        "Sabato Marco Siniscalchi",
+        "Kai Li"
+      ],
+      "summary": "We propose a knowledge-driven, model-based approach to segmenting audio into single-category and mixed-category chunks with applications to source separation. \"Knowledge\" here denotes information associated with the data, such as music scores. \"Model\" here refers to tool that can be used for audio segmentation and recognition, such as hidden Markov models. In contrast to conventional learning that often relies on annotated data with given segment categories and their corresponding boundaries to ",
+      "published": "2026-02-25T01:07:42Z",
+      "category": "eess.AS",
+      "link": "http://arxiv.org/abs/2602.21476v1",
+      "pdf": "http://arxiv.org/pdf/2602.21476v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21464v1",
+      "title": "iMiGUE-Speech: A Spontaneous Speech Dataset for Affective Analysis",
+      "authors": [
+        "Sofoklis Kakouros",
+        "Fang Kang",
+        "Haoyu Chen"
+      ],
+      "summary": "This work presents iMiGUE-Speech, an extension of the iMiGUE dataset that provides a spontaneous affective corpus for studying emotional and affective states. The new release focuses on speech and enriches the original dataset with additional metadata, including speech transcripts, speaker-role separation between interviewer and interviewee, and word-level forced alignments. Unlike existing emotional speech datasets that rely on acted or laboratory-elicited emotions, iMiGUE-Speech captures spont",
+      "published": "2026-02-25T00:38:19Z",
+      "category": "eess.AS",
+      "link": "http://arxiv.org/abs/2602.21464v1",
+      "pdf": "http://arxiv.org/pdf/2602.21464v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20967v1",
+      "title": "Training-Free Intelligibility-Guided Observation Addition for Noisy ASR",
+      "authors": [
+        "Haoyang Li",
+        "Changsong Liu",
+        "Wei Rao"
+      ],
+      "summary": "Automatic speech recognition (ASR) degrades severely in noisy environments. Although speech enhancement (SE) front-ends effectively suppress background noise, they often introduce artifacts that harm recognition. Observation addition (OA) addressed this issue by fusing noisy and SE enhanced speech, improving recognition without modifying the parameters of the SE or ASR models. This paper proposes an intelligibility-guided OA method, where fusion weights are derived from intelligibility estimates",
+      "published": "2026-02-24T14:46:54Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20967v1",
+      "pdf": "http://arxiv.org/pdf/2602.20967v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20823v1",
+      "title": "Geometric Analysis of Speech Representation Spaces: Topological Disentanglement and Confound Detection",
+      "authors": [
+        "Bipasha Kashyap",
+        "Pubudu N. Pathirana"
+      ],
+      "summary": "Speech-based clinical tools are increasingly deployed in multilingual settings, yet whether pathological speech markers remain geometrically separable from accent variation remains unclear. Systems may misclassify healthy non-native speakers or miss pathology in multilingual patients. We propose a four-metric clustering framework to evaluate geometric disentanglement of emotional, linguistic, and pathological speech features across six corpora and eight dataset combinations. A consistent hierarc",
+      "published": "2026-02-24T12:00:52Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20823v1",
+      "pdf": "http://arxiv.org/pdf/2602.20823v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.22029v1",
+      "title": "MIDI-Informed Singing Accompaniment Generation in a Compositional Song Pipeline",
+      "authors": [
+        "Fang-Duo Tsai",
+        "Yi-An Lai",
+        "Fei-Yueh Chen"
+      ],
+      "summary": "Song generation aims to produce full songs with vocals and accompaniment from lyrics and text descriptions, yet end-to-end models remain data- and compute-intensive and provide limited editability. We advocate a compositional alternative that decomposes the task into melody composition, singing voice synthesis, and singing accompaniment generation. Central to our approach is MIDI-informed singing accompaniment generation (MIDI-SAG), which conditions accompaniment on the symbolic vocal-melody MID",
+      "published": "2026-02-24T06:43:27Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.22029v1",
+      "pdf": "http://arxiv.org/pdf/2602.22029v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20592v1",
+      "title": "Quantifying Dimensional Independence in Speech: An Information-Theoretic Framework for Disentangled Representation Learning",
+      "authors": [
+        "Bipasha Kashyap",
+        "Björn W. Schuller",
+        "Pubudu N. Pathirana"
+      ],
+      "summary": "Speech signals encode emotional, linguistic, and pathological information within a shared acoustic channel; however, disentanglement is typically assessed indirectly through downstream task performance. We introduce an information-theoretic framework to quantify cross-dimension statistical dependence in handcrafted acoustic features by integrating bounded neural mutual information (MI) estimation with non-parametric validation. Across six corpora, cross-dimension MI remains low, with tight estim",
+      "published": "2026-02-24T06:33:03Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20592v1",
+      "pdf": "http://arxiv.org/pdf/2602.20592v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20530v1",
+      "title": "Memory-guided Prototypical Co-occurrence Learning for Mixed Emotion Recognition",
+      "authors": [
+        "Ming Li",
+        "Yong-Jin Liu",
+        "Fang Liu"
+      ],
+      "summary": "Emotion recognition from multi-modal physiological and behavioral signals plays a pivotal role in affective computing, yet most existing models remain constrained to the prediction of singular emotions in controlled laboratory settings. Real-world human emotional experiences, by contrast, are often characterized by the simultaneous presence of multiple affective states, spurring recent interest in mixed emotion recognition as an emotion distribution learning problem. Current approaches, however,",
+      "published": "2026-02-24T04:11:25Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20530v1",
+      "pdf": "http://arxiv.org/pdf/2602.20530v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21772v1",
+      "title": "UniWhisper: Efficient Continual Multi-task Training for Robust Universal Audio Representation",
+      "authors": [
+        "Yuxuan Chen",
+        "Peize He",
+        "Haoyuan Xu"
+      ],
+      "summary": "A universal audio representation should capture fine-grained speech cues and high-level semantics for environmental sounds and music in a single encoder. Existing encoders often excel in one domain but degrade in others. We propose UniWhisper, an efficient continual multi-task training framework that casts heterogeneous audio tasks into a unified instruction and answer format. This enables standard next-token training without task-specific heads and losses. We train it on 38k hours of public aud",
+      "published": "2026-02-25T10:47:20Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.21772v1",
+      "pdf": "http://arxiv.org/pdf/2602.21772v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21741v1",
+      "title": "Robust Long-Form Bangla Speech Processing: Automatic Speech Recognition and Speaker Diarization",
+      "authors": [
+        "MD. Sagor Chowdhury",
+        "Adiba Fairooz Chowdhury"
+      ],
+      "summary": "We describe our end-to-end system for Bengali long-form speech recognition (ASR) and speaker diarization submitted to the DL Sprint 4.0 competition on Kaggle. Bengali presents substantial challenges for both tasks: a large phoneme inventory, significant dialectal variation, frequent code-mixing with English, and a relative scarcity of large-scale labelled corpora. For ASR we achieve a best private Word Error Rate (WER) of 0.37738 and public WER of 0.36137, combining a BengaliAI fine-tuned Whispe",
+      "published": "2026-02-25T09:52:32Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.21741v1",
+      "pdf": "http://arxiv.org/pdf/2602.21741v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.21183v1",
+      "title": "823-OLT @ BUET DL Sprint 4.0: Context-Aware Windowing for ASR and Fine-Tuned Speaker Diarization in Bengali Long Form Audio",
+      "authors": [
+        "Ratnajit Dhar",
+        "Arpita Mallik"
+      ],
+      "summary": "Bengali, despite being one of the most widely spoken languages globally, remains underrepresented in long form speech technology, particularly in systems addressing transcription and speaker attribution. We present frameworks for long form Bengali speech intelligence that address automatic speech recognition using a Whisper Medium based model and speaker diarization using a finetuned segmentation model. The ASR pipeline incorporates vocal separation, voice activity detection, and a gap aware win",
+      "published": "2026-02-24T18:34:14Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.21183v1",
+      "pdf": "http://arxiv.org/pdf/2602.21183v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20805v1",
+      "title": "Assessing the Impact of Speaker Identity in Speech Spoofing Detection",
+      "authors": [
+        "Anh-Tuan Dao",
+        "Driss Matrouf",
+        "Nicholas Evans"
+      ],
+      "summary": "Spoofing detection systems are typically trained using diverse recordings from multiple speakers, often assuming that the resulting embeddings are independent of speaker identity. However, this assumption remains unverified. In this paper, we investigate the impact of speaker information on spoofing detection systems. We propose two approaches within our Speaker-Invariant Multi-Task framework, one that models speaker identity within the embeddings and another that removes it. SInMT integrates mu",
+      "published": "2026-02-24T11:45:41Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20805v1",
+      "pdf": "http://arxiv.org/pdf/2602.20805v1.pdf"
+    },
+    {
+      "id": "http://arxiv.org/abs/2602.20744v1",
+      "title": "Voices of the Mountains: Deep Learning-Based Vocal Error Detection System for Kurdish Maqams",
+      "authors": [
+        "Darvan Shvan Khairaldeen",
+        "Hossein Hassani"
+      ],
+      "summary": "Maqam, a singing type, is a significant component of Kurdish music. A maqam singer receives training in a traditional face-to-face or through self-training. Automatic Singing Assessment (ASA) uses machine learning (ML) to provide the accuracy of singing styles and can help learners to improve their performance through error detection. Currently, the available ASA tools follow Western music rules. The musical composition requires all notes to stay within their expected pitch range from start to f",
+      "published": "2026-02-24T10:17:16Z",
+      "category": "cs.SD",
+      "link": "http://arxiv.org/abs/2602.20744v1",
+      "pdf": "http://arxiv.org/pdf/2602.20744v1.pdf"
+    }
+  ],
   "blogs": []
 }

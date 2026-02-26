@@ -86,8 +86,10 @@ async function fetchArxivPapers() {
   const categories = ['eess.AS', 'cs.SD'];
   const allPapers = [];
   
-  // 只获取今天的论文
-  const today = new Date().toISOString().split('T')[0];
+  // 获取最近2天的论文
+  const twoDaysAgo = new Date();
+  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  const cutoffDate = twoDaysAgo.toISOString().split('T')[0];
   
   for (const cat of categories) {
     try {
@@ -119,10 +121,10 @@ async function fetchArxivPapers() {
         }))
         .filter(p => {
           const pubDate = p.published.split('T')[0];
-          return pubDate === today;
+          return pubDate >= cutoffDate;
         });
       
-      console.log(`[arXiv ${cat}] 找到 ${papers.length} 篇今日论文`);
+      console.log(`[arXiv ${cat}] 找到 ${papers.length} 篇近期论文`);
       allPapers.push(...papers);
     } catch (err) {
       console.error(`[arXiv ${cat}] 抓取失败:`, err.message);
