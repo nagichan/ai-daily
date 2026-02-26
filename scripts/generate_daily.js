@@ -19,6 +19,160 @@ const SITE_DIR = path.join(__dirname, '..', 'site');
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(SITE_DIR)) fs.mkdirSync(SITE_DIR, { recursive: true });
 
+// 简单翻译词典（常见AI术语）
+const TRANSLATIONS = {
+  // AI/ML 基础术语
+  'AI': '人工智能',
+  'ML': '机器学习',
+  'LLM': '大语言模型',
+  'NLP': '自然语言处理',
+  'CV': '计算机视觉',
+  'ASR': '自动语音识别',
+  'TTS': '语音合成',
+  'STT': '语音转文字',
+  'AR': '增强现实',
+  'VR': '虚拟现实',
+  
+  // 模型架构
+  'Transformer': 'Transformer模型',
+  'Attention': '注意力机制',
+  'GPT': 'GPT模型',
+  'BERT': 'BERT模型',
+  'MoE': '混合专家模型',
+  'Diffusion': '扩散模型',
+  'GAN': '生成对抗网络',
+  'VAE': '变分自编码器',
+  'RNN': '循环神经网络',
+  'CNN': '卷积神经网络',
+  'LSTM': '长短期记忆网络',
+  
+  // 语音相关
+  'Speech': '语音',
+  'Audio': '音频',
+  'Voice': '声音',
+  'Speech Recognition': '语音识别',
+  'Speech Synthesis': '语音合成',
+  'Text-to-Speech': '语音合成',
+  'Speaker': '说话人',
+  'Diarization': '说话人分离',
+  'Voice Conversion': '声音转换',
+  'Music': '音乐',
+  'Sound': '声音',
+  'Acoustic': '声学',
+  
+  // 技术术语
+  'Model': '模型',
+  'Training': '训练',
+  'Fine-tuning': '微调',
+  'Pre-training': '预训练',
+  'Inference': '推理',
+  'Deployment': '部署',
+  'Optimization': '优化',
+  'Quantization': '量化',
+  'Distillation': '蒸馏',
+  
+  // 研究方向
+  'Zero-shot': '零样本',
+  'Few-shot': '少样本',
+  'Multi-modal': '多模态',
+  'Cross-modal': '跨模态',
+  'Self-supervised': '自监督',
+  'Reinforcement': '强化学习',
+  
+  // 常见词汇
+  'Generation': '生成',
+  'Generation': '生成',
+  'Recognition': '识别',
+  'Detection': '检测',
+  'Classification': '分类',
+  'Segmentation': '分割',
+  'Extraction': '提取',
+  'Enhancement': '增强',
+  'Separation': '分离',
+  'Restoration': '恢复',
+  'Reconstruction': '重建',
+  'Representation': '表示',
+  'Embedding': '嵌入',
+  'Encoding': '编码',
+  'Decoding': '解码',
+  
+  // 公司/机构
+  'Google': '谷歌',
+  'OpenAI': 'OpenAI',
+  'Microsoft': '微软',
+  'Meta': 'Meta',
+  'Nvidia': '英伟达',
+  'Anthropic': 'Anthropic',
+  'Amazon': '亚马逊',
+  'Apple': '苹果',
+  'Salesforce': 'Salesforce',
+  'Samsung': '三星',
+  'Intel': '英特尔',
+  'AMD': 'AMD',
+  
+  // 其他常见词
+  'New': '新',
+  'System': '系统',
+  'Method': '方法',
+  'Framework': '框架',
+  'Approach': '方法',
+  'Algorithm': '算法',
+  'Network': '网络',
+  'Layer': '层',
+  'Dataset': '数据集',
+  'Benchmark': '基准测试',
+  'Performance': '性能',
+  'Efficiency': '效率',
+  'Accuracy': '准确率',
+  'Learning': '学习',
+  'Based': '基于',
+  'Using': '使用',
+  'With': '具有',
+  'For': '用于',
+  'From': '来自',
+  'Using': '使用',
+  'via': '通过',
+  'and': '和',
+  'with': '具有',
+  'for': '用于',
+  'based': '基于',
+  'using': '使用',
+  'through': '通过',
+  'a': '',
+  'an': '',
+  'the': '',
+};
+
+// 翻译函数（基于词典替换）
+function translateToChinese(text) {
+  if (!text) return '';
+  
+  let translated = text;
+  
+  // 按长度排序，从长到短替换（避免短词替换影响长词）
+  const terms = Object.keys(TRANSLATIONS).sort((a, b) => b.length - a.length);
+  
+  for (const term of terms) {
+    // 替换时注意单词边界
+    const regex = new RegExp(`\\b${term}\\b`, 'gi');
+    translated = translated.replace(regex, TRANSLATIONS[term]);
+  }
+  
+  return translated;
+}
+
+// 翻译标题
+function translateTitle(title) {
+  if (!title) return '';
+  
+  // 先翻译已知的术语
+  let translated = translateToChinese(title);
+  
+  // 如果翻译后几乎没有变化，说明没有词典里的词，可能需要保留原文
+  // 或者尝试调用翻译API（这里先用简单处理）
+  return translated;
+}
+
 // 抓取 arXiv 论文
 async function fetchArxivPapers() {
   const categories = ['eess.AS', 'cs.SD'];
@@ -99,34 +253,35 @@ function generateMarkdown(data) {
   md += `## 📰 AI 前沿资讯\n\n`;
   if (aiNews.length > 0) {
     aiNews.slice(0, 15).forEach((news, i) => {
-      md += `### ${i + 1}. [${news.title}](${news.link})\n`;
-      md += `**来源**: ${news.source}\n\n`;
+      md += `### ${i + 1}. [${translateTitle(news.title)}](${news.link})\n`;
+      md += `**来源**: ${news.source}\n`;
       if (news.summary) {
-        md += `${news.summary}...\n\n`;
+        md += `**摘要**: ${news.summary}\n`;
       }
+      md += `\n`;
     });
   } else {
-    md += `*今日暂无更新*\n\n`;
+    md += `_暂无_\n`;
   }
   
-  md += `---\n\n`;
+  md += `\n---\n\n`;
   
   // 语音前沿论文
   md += `## 🎤 语音前沿论文\n\n`;
   md += `*来源: arXiv eess.AS, cs.SD*\n\n`;
   if (papers.length > 0) {
     papers.forEach((paper, i) => {
-      md += `### ${i + 1}. [${paper.title}](${paper.link})\n`;
-      md += `**作者**: ${paper.authors.join(', ')}${paper.authors.length < 3 ? '' : ' 等'}\n`;
+      md += `### ${i + 1}. [${translateTitle(paper.title)}](${paper.link})\n`;
+      md += `**作者**: ${paper.authors.join(', ')}\n`;
       md += `**分类**: ${paper.category}\n`;
-      md += `**摘要**: ${paper.summary}...\n`;
+      md += `**摘要**: ${paper.summary}\n`;
       md += `**PDF**: [下载](${paper.pdf})\n\n`;
     });
   } else {
-    md += `*今日暂无新论文*\n\n`;
+    md += `_暂无_\n`;
   }
   
-  md += `---\n\n`;
+  md += `\n---\n\n`;
   
   // 博主动态
   md += `## 👥 关注博主动态\n\n`;
@@ -272,25 +427,27 @@ function generateHTML(data) {
       <h2>📰 AI 前沿资讯</h2>
       ${aiNews.length > 0 ? aiNews.slice(0, 15).map(news => `
         <div class="item">
-          <h3><a href="${news.link}" target="_blank">${escapeHtml(news.title)}</a></h3>
+          <h3><a href="${news.link}" target="_blank">${escapeHtml(translateTitle(news.title))}</a></h3>
           <div class="meta">来源: ${news.source}</div>
-          ${news.summary ? `<div class="summary">${escapeHtml(news.summary)}...</div>` : ''}
+          ${news.summary ? `<div class="summary">${escapeHtml(news.summary)}</div>` : ''}
         </div>
       `).join('') : '<p>今日暂无更新</p>'}
     </section>
     
     <section id="papers">
       <h2>🎤 语音前沿论文</h2>
-      <p style="color:#888;font-size:0.9em;margin-bottom:15px;">来源: arXiv eess.AS, cs.SD</p>
-      ${papers.length > 0 ? papers.map(paper => `
+      <p style="color:#888;font-size:0.9em;margin-bottom:15px;">来源: arXiv eess.AS, cs.SD | 标签: ${papers.map(p => p.category).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</p>
+      ${papers.length > 0 ? papers.slice(0, 20).map(paper => `
         <div class="item">
-          <h3><a href="${paper.link}" target="_blank">${escapeHtml(paper.title)}</a></h3>
+          <h3><a href="${paper.link}" target="_blank">${escapeHtml(translateTitle(paper.title))}</a></h3>
           <div class="meta">
             <span class="tag">${paper.category}</span>
             作者: ${paper.authors.join(', ')}${paper.authors.length < 3 ? '' : ' 等'}
           </div>
-          <div class="summary">${escapeHtml(paper.summary)}...</div>
-          <a href="${paper.pdf}" target="_blank" class="pdf-link">📄 PDF</a>
+          <div class="summary">📝 ${escapeHtml(translateTitle(paper.summary))}</div>
+          <div style="margin-top:8px;">
+            <a href="${paper.pdf}" target="_blank" class="pdf-link">📄 PDF</a>
+          </div>
         </div>
       `).join('') : '<p>今日暂无新论文</p>'}
     </section>
@@ -304,7 +461,7 @@ function generateHTML(data) {
             来源: <a href="${post.sourceUrl}" target="_blank">${post.source}</a> · 
             ${new Date(post.published).toLocaleDateString('zh-CN')}
           </div>
-          ${post.summary ? `<div class="summary">${escapeHtml(post.summary)}...</div>` : ''}
+          ${post.summary ? `<div class="summary">📝 ${escapeHtml(post.summary)}</div>` : ''}
         </div>
       `).join('') : '<p>近期暂无更新</p>'}
     </section>
