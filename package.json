@@ -1,0 +1,15 @@
+{
+  "name": "ai-daily",
+  "version": "1.0.0",
+  "description": "AI语音日报自动生成系统",
+  "main": "scripts/generate_daily.js",
+  "scripts": {
+    "fetch": "node scripts/generate_daily.js",
+    "push": "node scripts/push_feishu.js"
+  },
+  "dependencies": {
+    "xml2js": "^0.6.2"
+  },
+  "author": "",
+  "license": "MIT"
+}
