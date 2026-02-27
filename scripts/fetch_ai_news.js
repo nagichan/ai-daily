@@ -1,42 +1,37 @@
 /**
  * 抓取 AI 前沿资讯
- * 数据源: Hugging Face Papers, Reddit MachineLearning, 科技媒体 RSS
+ * 数据源: 机器之心、新智元、量子位
  */
 
 const https = require('https');
 const xml2js = require('xml2js');
 
-// 使用更稳定的数据源
+// 中国AI媒体源（使用RSSHub公共实例）
 const SOURCES = [
   {
-    name: 'TechCrunch AI',
-    url: 'https://techcrunch.com/category/artificial-intelligence/',
-    rss: 'https://techcrunch.com/feed/'
+    name: '机器之心',
+    url: 'https://www.jiqizhixin.com',
+    // 尝试多个RSSHub实例
+    rss: [
+      'https://rsshub.app/jiqizhixin',
+      'https://rsshub.rssforever.com/jiqizhixin',
+    ]
   },
   {
-    name: 'MIT Tech Review',
-    url: 'https://www.technologyreview.com/topic/artificial-intelligence/',
-    rss: 'https://www.technologyreview.com/feed/'
+    name: '新智元',
+    url: 'https://www.jiqizhixin.com',
+    rss: [
+      'https://rsshub.app/newzhidian',
+      'https://rsshub.rssforever.com/newzhidian',
+    ]
   },
   {
-    name: 'AI News',
-    url: 'https://artificialintelligence-news.com',
-    rss: 'https://artificialintelligence-news.com/feed/'
-  },
-  {
-    name: 'OpenAI Blog',
-    url: 'https://openai.com/blog',
-    rss: 'https://openai.com/blog/rss.xml'
-  },
-  {
-    name: 'DeepMind Blog',
-    url: 'https://deepmind.google',
-    rss: 'https://deepmind.com/blog/rss.xml'
-  },
-  {
-    name: 'Anthropic News',
-    url: 'https://www.anthropic.com/news',
-    rss: 'https://www.anthropic.com/news/rss'
+    name: '量子位',
+    url: 'https://www.qbitai.com',
+    rss: [
+      'https://rsshub.app/qbitai',
+      'https://rsshub.rssforever.com/qbitai',
+    ]
   }
 ];
 
@@ -50,7 +45,7 @@ async function fetchRSS(rssUrl, timeout = 15000) {
       method: 'GET',
       timeout: timeout,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; AI-Daily-Bot/1.0)',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml'
       }
     }, (res) => {
@@ -83,11 +78,11 @@ async function fetchRSS(rssUrl, timeout = 15000) {
 function parseRSSFeed(feed, sourceName) {
   const items = feed.rss?.channel?.[0]?.item || feed.feed?.entry || [];
   
-  return items.slice(0, 20).map(item => {
+  return items.slice(0, 15).map(item => {
     let link = '';
     if (Array.isArray(item.link)) {
       link = item.link[0];
-      if (typeof link === 'object') link = link.$.href || link._;
+      if (typeof link === 'object') link = link._ || link.$.href || link;
     } else {
       link = item.link || item.id?.[0] || '';
     }
@@ -96,7 +91,7 @@ function parseRSSFeed(feed, sourceName) {
     summary = summary.replace(/<[^>]*>/g, '').substring(0, 200);
     
     return {
-      title: item.title?.[0]?._ || item.title?.[0] || 'Untitled',
+      title: item.title?.[0]?._ || item.title?.[0]?.toString() || item.title?.[0] || 'Untitled',
       link: link,
       published: item.pubDate?.[0] || item.published?.[0] || item.updated?.[0] || new Date().toISOString(),
       summary: summary,
@@ -111,27 +106,37 @@ async function fetchAINews(daysBack = 1) {
   cutoffDate.setDate(cutoffDate.getDate() - daysBack);
   
   for (const source of SOURCES) {
-    try {
-      console.log(`[${source.name}] 正在抓取...`);
+    let success = false;
+    
+    // 尝试多个RSS实例
+    for (const rssUrl of source.rss) {
+      if (success) break;
       
-      const feed = await fetchRSS(source.rss);
-      const items = parseRSSFeed(feed, source.name);
-      
-      // 过滤最近的文章
-      const recentItems = items.filter(item => {
-        try {
-          const pubDate = new Date(item.published);
-          return pubDate >= cutoffDate;
-        } catch {
-          return true; // 日期解析失败，保留
-        }
-      });
-      
-      console.log(`[${source.name}] 找到 ${recentItems.length} 条资讯`);
-      allNews.push(...recentItems);
-      
-    } catch (err) {
-      console.error(`[${source.name}] 抓取失败:`, err.message);
+      try {
+        console.log(`[${source.name}] 正在尝试: ${rssUrl}`);
+        const feed = await fetchRSS(rssUrl);
+        const items = parseRSSFeed(feed, source.name);
+        
+        // 过滤最近的文章
+        const recentItems = items.filter(item => {
+          try {
+            const pubDate = new Date(item.published);
+            return pubDate >= cutoffDate;
+          } catch {
+            return true;
+          }
+        });
+        
+        console.log(`[${source.name}] 找到 ${recentItems.length} 条资讯`);
+        allNews.push(...recentItems);
+        success = true;
+      } catch (err) {
+        console.error(`[${source.name}] ${rssUrl} 失败:`, err.message);
+      }
+    }
+    
+    if (!success) {
+      console.error(`[${source.name}] 所有源都失败`);
     }
   }
   
@@ -146,7 +151,6 @@ async function fetchAINews(daysBack = 1) {
 
 module.exports = { fetchAINews, SOURCES };
 
-// 直接运行测试
 if (require.main === module) {
   fetchAINews(1).then(news => {
     console.log(JSON.stringify(news, null, 2));
